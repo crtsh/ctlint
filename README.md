@@ -26,6 +26,8 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 - [Precertificate included an SCT list](https://bugzilla.mozilla.org/show_bug.cgi?id=1815534)
 
+- [SCTs signed using the wrong key](https://groups.google.com/a/chromium.org/g/ct-policy/c/gsC6NblTxyQ/m/ARKimL4NBgAJ)
+
 - [Insufficient log operator diversity amongst SCTs embedded in a certificate](https://crt.sh/?id=14593225463)
 
 - [SCTs corrupted by a CA and then embedded in certificates](https://bugzilla.mozilla.org/show_bug.cgi?id=1952591)
