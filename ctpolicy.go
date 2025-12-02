@@ -71,6 +71,11 @@ func findLogByKeyHash(keyHash [sha256.Size]byte, logList *loglist3.LogList) (*lo
 func checkSCTListComplianceWithCTPolicy(cert *x509.Certificate, scts []*ctgo.SignedCertificateTimestamp, logList *loglist3.LogList, ctPolicyName string) []string {
 	var findings []string
 
+	// Chrome CT Policy: "Chrome will enforce CT so long as the log_list_timestamp of the freshest version of the log list Chrome stores is within the past 70 days (10 weeks), and uses a log list format that Chrome understands."
+	if ctPolicyName == "Chrome" && logList.LogListTimestamp.Add(70*24*time.Hour).Before(time.Now()) {
+		findings = append(findings, fmt.Sprintf("F: The available %s log list is older than 70 days: Update ctlint!", ctPolicyName))
+	}
+
 	var currentlyApprovedLogs, onceApprovedLogs []*loglist3.Log
 	previousOperatorName := ""
 	atLeastTwoOperators := false
