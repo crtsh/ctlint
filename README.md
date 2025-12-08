@@ -38,6 +38,8 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 - [SCTs obtained from logs that are not yet Usable and then embedded in certificates](https://groups.google.com/a/chromium.org/g/ct-policy/c/VGgpEj92dCk/m/Y_rN35ZKBwAJ)
 
+- [SCTs stripped of extensions by a CA and then embedded in certificates](https://crt.sh/?id=22883244542&opt=pkimetal)
+
 ## Caveats
 
 - After a log's temporal interval expires, the log is removed from the various log lists. Consequently, `ctlint` can only audit CT Policy compliance of SCTs embedded in certificates that have not yet expired.
