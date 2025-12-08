@@ -2,7 +2,6 @@ package ctlint
 
 import (
 	"crypto/sha256"
-	"time"
 
 	ctgo "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/asn1"
@@ -28,8 +27,6 @@ func checkSCTListExtension(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Siz
 		findings = append(findings, "E: SCT list contains trailing data")
 	} else if scts, err = x509util.ParseSCTsFromSCTList(&sctList); err != nil {
 		findings = append(findings, "E: SCTs could not be parsed from SCT list")
-	} else if time.Now().After(cert.NotAfter) {
-		findings = append(findings, "N: SCT list in expired certificate not checked for CT Policy compliance")
 	} else {
 		findings = append(findings, checkSCTListCompliance(cert, sha256IssuerSPKI, scts)...)
 	}
