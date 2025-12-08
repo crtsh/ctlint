@@ -1,12 +1,44 @@
 #!/bin/bash
 
-echo
-echo "Fetching latest Chrome CT log list and verifying its signature:"
-wget -nv -O files/gstatic/v3/all_logs_list.json https://www.gstatic.com/ct/log_list/v3/all_logs_list.json
-wget -nv -O files/gstatic/v3/all_logs_list.sig https://www.gstatic.com/ct/log_list/v3/all_logs_list.sig
-openssl pkeyutl -verify -rawin -pubin -inkey files/gstatic/log_list_pubkey.pem -in files/gstatic/v3/all_logs_list.json -sigfile files/gstatic/v3/all_logs_list.sig
-echo
+LOGLIST=$(mktemp)
+LOGLISTSIG=$(mktemp)
 
-echo "Fetching latest Apple CT log list:"
-wget -nv -O files/apple/current_log_list.json https://valid.apple.com/ct/log_list/current_log_list.json
+echo
+mkdir -p files/gstatic/v3
+wget -nv -O "$LOGLIST" https://www.gstatic.com/ct/log_list/v3/all_logs_list.json
+if [ $? -eq 0 ]; then
+  wget -nv -O "$LOGLISTSIG" https://www.gstatic.com/ct/log_list/v3/all_logs_list.sig
+  if [ $? -eq 0 ]; then
+    openssl pkeyutl -verify -rawin -pubin -inkey files/gstatic/log_list_pubkey.pem -in "$LOGLIST" -sigfile "$LOGLISTSIG"
+    if [ $? -eq 0 ]; then
+      mv "$LOGLIST" files/gstatic/v3/all_logs_list.json
+      mv "$LOGLISTSIG" files/gstatic/v3/all_logs_list.sig
+    else
+      echo "Signature verification failed for https://www.gstatic.com/ct/log_list/v3/all_logs_list.json"
+    fi
+  else
+    echo "Failed to download signature file"
+  fi
+else
+  echo "Failed to download log list"
+fi
+
+echo
+mkdir -p files/apple
+wget -nv -O "$LOGLIST" https://valid.apple.com/ct/log_list/current_log_list.json
+if [ $? -eq 0 ]; then
+  mv "$LOGLIST" files/apple/current_log_list.json
+else
+  echo "Failed to download log list"
+fi
+
+echo
+mkdir -p files/crtsh/v3
+wget -nv -O "$LOGLIST" https://crt.sh/v3/logs.json?include=all
+if [ $? -eq 0 ]; then
+  mv "$LOGLIST" files/crtsh/v3/all_logs_list.json
+else
+  echo "Failed to download log list"
+fi
+
 echo
