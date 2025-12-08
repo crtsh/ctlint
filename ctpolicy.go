@@ -39,8 +39,12 @@ func checkSCTListCompliance(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Si
 		}
 	}
 
-	findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, gstaticV3AllLogsList, "Chrome")...)
-	findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, appleCurrentLogList, "Apple")...)
+	if time.Now().After(cert.NotAfter) {
+		findings = append(findings, "N: SCT list in expired certificate not checked for CT Policy compliance")
+	} else {
+		findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, gstaticV3AllLogsList, "Chrome")...)
+		findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, appleCurrentLogList, "Apple")...)
+	}
 
 	return findings
 }
