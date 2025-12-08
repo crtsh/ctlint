@@ -11,11 +11,11 @@ import (
 
 const gstaticV3AllLogsListFilename = "files/gstatic/v3/all_logs_list.json"
 const appleCurrentLogListFilename = "files/apple/current_log_list.json"
+const crtshV3AllLogsListFilename = "files/crtsh/v3/all_logs_list.json"
 
 //go:embed files/*
 var files embed.FS
-var gstaticV3AllLogsList, appleCurrentLogList *loglist3.LogList
-
+var gstaticV3AllLogsList, appleCurrentLogList, crtshV3AllLogsList *loglist3.LogList
 var logSignatureVerifierMap map[[sha256.Size]byte]*ctgo.SignatureVerifier
 var temporalIntervalMap map[[sha256.Size]byte]*loglist3.TemporalInterval
 
@@ -36,6 +36,12 @@ func LoadLogLists() error {
 	if appleCurrentLogList, err = loadLogList(appleCurrentLogListFilename); err != nil {
 		return err
 	} else if err = addSignatureVerifiersForLogList(appleCurrentLogList); err != nil {
+		return err
+	}
+
+	if crtshV3AllLogsList, err = loadLogList(crtshV3AllLogsListFilename); err != nil {
+		return err
+	} else if err = addSignatureVerifiersForLogList(crtshV3AllLogsList); err != nil {
 		return err
 	}
 
@@ -65,14 +71,16 @@ func populateMaps(logPublicKey []byte, ti *loglist3.TemporalInterval) error {
 		logSignatureVerifierMap[logID] = sv
 	}
 
-	if temporalIntervalMap[logID] == nil {
-		temporalIntervalMap[logID] = ti
-	} else {
-		if ti.StartInclusive.After(temporalIntervalMap[logID].StartInclusive) {
-			temporalIntervalMap[logID].StartInclusive = ti.StartInclusive
-		}
-		if ti.EndExclusive.Before(temporalIntervalMap[logID].EndExclusive) {
-			temporalIntervalMap[logID].EndExclusive = ti.EndExclusive
+	if ti != nil {
+		if temporalIntervalMap[logID] == nil {
+			temporalIntervalMap[logID] = ti
+		} else {
+			if ti.StartInclusive.After(temporalIntervalMap[logID].StartInclusive) {
+				temporalIntervalMap[logID].StartInclusive = ti.StartInclusive
+			}
+			if ti.EndExclusive.Before(temporalIntervalMap[logID].EndExclusive) {
+				temporalIntervalMap[logID].EndExclusive = ti.EndExclusive
+			}
 		}
 	}
 
