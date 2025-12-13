@@ -30,7 +30,7 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 - [Insufficient log operator diversity amongst SCTs embedded in a certificate](https://crt.sh/?id=14593225463)
 
-- [SCTs corrupted by a CA and then embedded in certificates](https://bugzilla.mozilla.org/show_bug.cgi?id=1952591)
+- [SCTs corrupted and then embedded in certificates](https://bugzilla.mozilla.org/show_bug.cgi?id=1952591)
 
 - [Invalid SCTs returned by a log and then embedded in certificates](https://bugzilla.mozilla.org/show_bug.cgi?id=1969296)
 
@@ -38,7 +38,9 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 - [SCTs obtained from logs that are not yet Usable and then embedded in certificates](https://groups.google.com/a/chromium.org/g/ct-policy/c/VGgpEj92dCk/m/Y_rN35ZKBwAJ)
 
-- [SCTs stripped of extensions by a CA and then embedded in certificates](https://crt.sh/?id=22883244542&opt=pkimetal)
+- [SCTs stripped of extensions and then embedded in certificates](https://www.mail-archive.com/dev-security-policy@mozilla.org/msg02291.html)
+
+- [SCT extensions not base64 decoded and then embedded in certificates](https://www.mail-archive.com/dev-security-policy@mozilla.org/msg02291.html)
 
 ## Caveats
 
