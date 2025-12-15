@@ -10,9 +10,9 @@ CT compliance linter
 
 ## Features
 
-- Determines which CT logs are currently or once approved for each CT Policy by bundling and parsing the Chrome [all_logs_list.json](https://googlechrome.github.io/CertificateTransparency/log_lists.html) and Apple [current_log_list.json](https://support.apple.com/en-us/103214) log lists.
+- Determines which CT logs are currently or once approved for each CT Policy by bundling and parsing the Chrome [all_logs_list.json](https://googlechrome.github.io/CertificateTransparency/log_lists.html), Apple [current_log_list.json](https://support.apple.com/en-us/103214), and Mozilla [Known CT Logs](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#Known_CT_Logs) log lists.
 
-- Audits certificates against the requirements of the [Chrome CT Policy](https://googlechrome.github.io/CertificateTransparency/ct_policy.html) and the [Apple CT Policy](https://support.apple.com/en-us/103214), to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs.
+- Audits certificates against the requirements of the [Chrome CT Policy](https://googlechrome.github.io/CertificateTransparency/ct_policy.html), the [Apple CT Policy](https://support.apple.com/en-us/103214), and the [Mozilla CT Policy](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#CT_Policy), to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs.
 
 - Checks that certificates expire within the temporal intervals of the logs that supplied the precertificate SCTs embedded in those certificates.
 

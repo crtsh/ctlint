@@ -42,3 +42,6 @@ else
 fi
 
 echo
+cmd/mozillactknownlogs/check_for_ctknownlogs_changes.sh
+
+echo

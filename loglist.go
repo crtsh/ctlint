@@ -12,10 +12,11 @@ import (
 const gstaticV3AllLogsListFilename = "files/gstatic/v3/all_logs_list.json"
 const appleCurrentLogListFilename = "files/apple/current_log_list.json"
 const crtshV3AllLogsListFilename = "files/crtsh/v3/all_logs_list.json"
+const mozillaV3KnownLogsListFilename = "files/mozilla/v3/known_logs_list.json"
 
 //go:embed files/*
 var files embed.FS
-var gstaticV3AllLogsList, appleCurrentLogList, crtshV3AllLogsList *loglist3.LogList
+var gstaticV3AllLogsList, appleCurrentLogList, crtshV3AllLogsList, mozillaV3KnownLogsList *loglist3.LogList
 var logSignatureVerifierMap map[[sha256.Size]byte]*ctgo.SignatureVerifier
 var temporalIntervalMap map[[sha256.Size]byte]*loglist3.TemporalInterval
 
@@ -42,6 +43,12 @@ func LoadLogLists() error {
 	if crtshV3AllLogsList, err = loadLogList(crtshV3AllLogsListFilename); err != nil {
 		return err
 	} else if err = addSignatureVerifiersForLogList(crtshV3AllLogsList); err != nil {
+		return err
+	}
+
+	if mozillaV3KnownLogsList, err = loadLogList(mozillaV3KnownLogsListFilename); err != nil {
+		return err
+	} else if err = addSignatureVerifiersForLogList(mozillaV3KnownLogsList); err != nil {
 		return err
 	}
 
