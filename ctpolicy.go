@@ -65,6 +65,7 @@ func findLogByKeyHash(keyHash [sha256.Size]byte, logList *loglist3.LogList) (*lo
 				return &loglist3.Log{
 					State:            tiledLog.State,
 					TemporalInterval: tiledLog.TemporalInterval,
+					Description:      tiledLog.Description,
 				}, operator.Name, false
 			}
 		}
@@ -92,17 +93,13 @@ func checkSCTListComplianceWithCTPolicy(cert *x509.Certificate, scts []*ctgo.Sig
 	nSCTsFromRFC6962Logs := 0
 	for _, sct := range scts {
 		if ctLog, logOperatorName, isRFC6962Log := findLogByKeyHash(sct.LogID.KeyID, logList); ctLog != nil && ctLog.State != nil {
-			if (ctLog.State.Usable != nil && !ctLog.State.Usable.Timestamp.Before(time.Now())) || ctLog.State.ReadOnly != nil {
+			if (ctLog.State.Usable != nil && !ctLog.State.Usable.Timestamp.After(time.Now())) || ctLog.State.ReadOnly != nil {
 				currentlyApprovedLogs = append(currentlyApprovedLogs, ctLog)
-			} else if ctLog.State.Qualified != nil && !ctLog.State.Qualified.Timestamp.Before(time.Now()) {
+			} else if ctLog.State.Qualified != nil && !ctLog.State.Qualified.Timestamp.After(time.Now()) {
 				nSCTsFromQualifiedLogs++
 				currentlyApprovedLogs = append(currentlyApprovedLogs, ctLog)
-			} else if ctLog.State.Retired != nil {
-				if ctLog.State.Retired.Timestamp.After(time.UnixMilli(int64(sct.Timestamp))) {
-					onceApprovedLogs = append(onceApprovedLogs, ctLog)
-				} else {
-					continue
-				}
+			} else if ctLog.State.Retired != nil && ctLog.State.Retired.Timestamp.After(time.UnixMilli(int64(sct.Timestamp))) {
+				onceApprovedLogs = append(onceApprovedLogs, ctLog)
 			} else {
 				continue
 			}
