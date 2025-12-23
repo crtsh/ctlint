@@ -1,0 +1,36 @@
+KEYNECTIS Extended Validation CA - PRE CERT
+NETLOCK Domain Validated CTCA
+NETLOCK DVSSL CTCA
+NetLock Expressz CTCA
+NetLock Közjegyzői CTCA
+NETLOCK OnlineSSL CTCA
+NETLOCK TLS DV ECC CTCA
+NETLOCK TLS EV ECC CTCA
+NETLOCK TLS OV ECC CTCA
+NETLOCK TLS Qualified EV ECC CTCA
+NETLOCK Trust EV CTCA
+NETLOCK Trust EV CTCA 2
+NETLOCK Trust EV CTCA 3
+NETLOCK Trust Qualified EV 2 CTCA
+NETLOCK Trust Qualified EV 3 CTCA
+NETLOCK Trust Qualified EV CTCA
+NetLock Üzleti CTCA
+Trustwave DV SHA256 Pre-Certificate CA
+Trustwave Extended Validation Pre-Certificate CA, Level 1
+Trustwave Extended Validation SHA256 Pre-Certificate CA, Level 1
+Trustwave Global EV P-256 Pre-Certificate CA
+Trustwave Global EV P-384 Pre-Certificate CA
+Trustwave Global EV Pre-Certificate CA
+Trustwave OV SHA256 Pre-Certificate CA
+Trustwave Secure Global EV Pre-Certificate CA
+Trustwave XRamp Global EV Pre-Certificate CA
+Viking Cloud DV Pre-Certificate CA
+Viking Cloud EV Pre-Certificate CA
+Viking Cloud OV Pre-Certificate CA
+VikingCloud SG PRE EV CA, Level 1
+VikingCloud TWG PRE DV CA, Level 2
+VikingCloud TWG PRE EV CA, Level 1
+VikingCloud TWG PRE OV CA, Level 1
+VikingCloud TWG PRE P2 EV CA, Level 1
+VikingCloud TWG PRE P3 EV CA, Level 1
+VikingCloud XG PRE EV CA, Level 1
