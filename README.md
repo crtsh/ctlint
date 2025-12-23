@@ -14,6 +14,8 @@ CT compliance linter
 
 - Audits certificates against the requirements of the [Chrome CT Policy](https://googlechrome.github.io/CertificateTransparency/ct_policy.html), the [Apple CT Policy](https://support.apple.com/en-us/103214), and the [Mozilla CT Policy](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#CT_Policy), to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs.
 
+- Identifies precertificate issuance from a Precertificate Signing CA beyond the sunset date in the TLS BRs.
+
 - Checks that certificates expire within the temporal intervals of the logs that supplied the precertificate SCTs embedded in those certificates.
 
 - Verifies signatures on precertificate SCTs embedded in certificates, using bundled CCADB data to determine each SCT's issuer_key_hash field.
