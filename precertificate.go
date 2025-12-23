@@ -2,9 +2,28 @@ package ctlint
 
 import (
 	"bytes"
+	_ "embed"
+	"strings"
+	"time"
 
 	"github.com/google/certificate-transparency-go/x509"
 )
+
+//go:embed files/precert_signing_ca_commonnames.txt
+var precertSigningCACNs string
+
+var precertSigningCACNMap map[string]struct{}
+
+func init() {
+	precertSigningCACNMap = make(map[string]struct{})
+
+	for cn := range strings.SplitSeq(precertSigningCACNs, "\n") {
+		cn = strings.TrimSpace(cn)
+		if cn != "" {
+			precertSigningCACNMap[cn] = struct{}{}
+		}
+	}
+}
 
 func CheckPrecertificate(precert *x509.Certificate) []string {
 	var findings []string
@@ -34,6 +53,16 @@ func CheckPrecertificate(precert *x509.Certificate) []string {
 
 		if poisonExtCount == 0 {
 			findings = append(findings, "E: Precertificate 'poison' extension is absent")
+		} else {
+			findings = append(findings, "I: Precertificate identified")
+		}
+
+		if _, found := precertSigningCACNMap[precert.Issuer.CommonName]; found {
+			if precert.NotBefore.Before(time.Date(2026, 3, 15, 0, 0, 0, 0, time.UTC)) {
+				findings = append(findings, "I: Precertificate issued by a Precertificate Signing CA")
+			} else {
+				findings = append(findings, "E: Precertificate issued by a Precertificate Signing CA after March 15, 2026")
+			}
 		}
 	}
 

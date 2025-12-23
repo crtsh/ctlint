@@ -36,6 +36,8 @@ func CheckCertificate(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byt
 					return append(findings, "N: SCT list extension is absent")
 				}
 			}
+		} else {
+			findings = append([]string{"I: Certificate with embedded SCT list identified"}, findings...)
 		}
 	}
 
