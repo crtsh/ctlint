@@ -14,7 +14,7 @@ func CheckCertificate(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byt
 
 	if cert == nil {
 		findings = append(findings, "E: Certificate not provided")
-	} else {
+	} else if !cert.IsCA {
 		sctListExtCount := 0
 		for _, ext := range cert.Extensions {
 			if ext.Id.Equal(x509.OIDExtensionCTSCT) {
@@ -33,11 +33,19 @@ func CheckCertificate(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byt
 		if sctListExtCount == 0 {
 			for _, eku := range cert.ExtKeyUsage {
 				if eku == x509.ExtKeyUsageServerAuth {
-					return append(findings, "N: SCT list extension is absent")
+					findings = append(findings, "N: SCT list extension is absent")
+					break
 				}
 			}
 		} else {
 			findings = append([]string{"I: Certificate with embedded SCT list identified"}, findings...)
+		}
+	} else {
+		for _, eku := range cert.ExtKeyUsage {
+			if eku == x509.ExtKeyUsageCertificateTransparency {
+				findings = append(findings, "I: Precertificate Signing Certificate identified")
+				break
+			}
 		}
 	}
 
