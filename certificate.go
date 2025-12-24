@@ -43,7 +43,7 @@ func CheckCertificate(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byt
 	} else {
 		for _, eku := range cert.ExtKeyUsage {
 			if eku == x509.ExtKeyUsageCertificateTransparency {
-				findings = append(findings, "I: Precertificate Signing Certificate identified")
+				findings = append([]string{"I: Precertificate Signing Certificate identified"}, findings...)
 				break
 			}
 		}

@@ -54,7 +54,7 @@ func CheckPrecertificate(precert *x509.Certificate) []string {
 		if poisonExtCount == 0 {
 			findings = append(findings, "E: Precertificate 'poison' extension is absent")
 		} else {
-			findings = append(findings, "I: Precertificate identified")
+			findings = append([]string{"I: Precertificate identified"}, findings...)
 		}
 
 		if _, found := precertSigningCACNMap[precert.Issuer.CommonName]; found {
