@@ -46,11 +46,9 @@ jobs:
       if: env.log_list_updated == 'true'
       uses: peter-evans/create-pull-request@v8
       with:
-        add-paths: |
-          go.*
         token: ${{ secrets.GITHUB_TOKEN }}
         base: main
-        branch: auto-release
+        branch: auto-log-list-update
         title: "Log list update"
         body: "This pull request was automatically created due to a log list update."
         commit-message: Log list update
