@@ -1,7 +1,7 @@
 {
     "$schema": "https://valid.apple.com/ct/log_list/schema_versions/log_list_schema_v5.json",
-    "assetVersion": 28,
-    "assetVersionV2": 1009,
+    "assetVersion": 31,
+    "assetVersionV2": 1012,
     "operators": [
         {
             "email": [
@@ -307,9 +307,9 @@
                     "mmd": 60,
                     "monitoring_url": "https://raio2027h2a.ct.cloudflare.com/",
                     "state": {
-                        "pending": {
+                        "qualified": {
                             "timestamp": "2025-08-20T01:33:18Z",
-                            "version": "390"
+                            "version": "494"
                         }
                     },
                     "submission_url": "https://ct.cloudflare.com/logs/raio2027h2a/",
@@ -1570,6 +1570,74 @@
                         "start_inclusive": "2026-07-01T00:00:00Z"
                     },
                     "url": "https://sphinx.ct.digicert.com/2026h2/"
+                },
+                {
+                    "description": "DigiCert 'sphinx2027h1'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvirIq1XPwgwG7BnbMh2zoUbEt+T8z8XAtg9lo8jma+aaTQl8iVCypUFXtLpt4/SHaoUzbvcjDX/6B1IbL3OoIQ==",
+                    "log_id": "RqI5Z8YNtkaHxm89+ZmUdpOmphEghFfVVefj0KHZtkY=",
+                    "mmd": 86400,
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-10T18:00:00Z",
+                            "version": "482"
+                        }
+                    },
+                    "temporal_interval": {
+                        "end_exclusive": "2027-07-01T00:00:00Z",
+                        "start_inclusive": "2027-01-01T00:00:00Z"
+                    },
+                    "url": "https://sphinx.ct.digicert.com/2027h1/"
+                },
+                {
+                    "description": "DigiCert 'sphinx2027h2'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEUCe23M889mAsUVeTTBcNsAmP374ZWQboLdR8RdGwM3VZ6P/sDwhrL7wK4zrXPh3HwLDDLxDjvRBeivUSbpZSwA==",
+                    "log_id": "H7D4qS2K3aEhd2wF4qouFbrLxitlOTaVV2qqtS4R0R0=",
+                    "mmd": 86400,
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-10T18:00:00Z",
+                            "version": "483"
+                        }
+                    },
+                    "temporal_interval": {
+                        "end_exclusive": "2028-01-01T00:00:00Z",
+                        "start_inclusive": "2027-07-01T00:00:00Z"
+                    },
+                    "url": "https://sphinx.ct.digicert.com/2027h2/"
+                },
+                {
+                    "description": "DigiCert 'Wyvern2027h1'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEastxYj1mntGuyv74k4f+yaIx+ZEzlSJ+iVTYWlw8SpSKJ4TfxYWuBhnETlhpyG/5seJn0mOSnVgXsZ1JRflI7g==",
+                    "log_id": "ABpdGhwtk3W2SFV4+C9xoa5u7zl9KXyK4xV7yt7hoB4=",
+                    "mmd": 86400,
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-10T18:00:00Z",
+                            "version": "484"
+                        }
+                    },
+                    "temporal_interval": {
+                        "end_exclusive": "2027-07-01T00:00:00Z",
+                        "start_inclusive": "2027-01-01T00:00:00Z"
+                    },
+                    "url": "https://wyvern.ct.digicert.com/2027h1/"
+                },
+                {
+                    "description": "DigiCert 'Wyvern2027h2'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEuOg8hcgaYT/MShxpag2Hige0zsLzz8vOLZXp6faCdzM+Mn/njyU9ROAuwDxuu88/Grxn46kmehdOKVDFexbdSg==",
+                    "log_id": "N6oHzCFvLm2RnHCdJNj3MbAPKxR8YhzAkaX6GoTYFt0=",
+                    "mmd": 86400,
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-10T18:00:00Z",
+                            "version": "485"
+                        }
+                    },
+                    "temporal_interval": {
+                        "end_exclusive": "2028-01-01T00:00:00Z",
+                        "start_inclusive": "2027-07-01T00:00:00Z"
+                    },
+                    "url": "https://wyvern.ct.digicert.com/2027h2/"
                 }
             ],
             "name": "DigiCert",
@@ -1663,9 +1731,13 @@
                     "log_id": "rxgaKNaMo+CpikycZ6sJ+Lu8IrquvLE4o6Gd0/m2Aw0=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2023-11-13T19:44:55Z",
-                            "version": "236"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "aLJ1GqZiobxICL7qQFPCZzdkjU/TKvnA/CIVqU+LDy4=",
+                                "tree_size": 865235446
+                            },
+                            "timestamp": "2025-08-29T20:40:00Z",
+                            "version": "476"
                         }
                     },
                     "temporal_interval": {
@@ -1731,9 +1803,13 @@
                     "log_id": "GgT/SdBUHUCv9qDDv/HYxGcvTuzuI0BomGsXQC7ciX0=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2023-11-13T19:45:57Z",
-                            "version": "240"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "eJj4IHvdYpljVsW/YCery+QsSRHbuYBME7H912a5P2Y=",
+                                "tree_size": 1213760846
+                            },
+                            "timestamp": "2025-09-18T17:20:00Z",
+                            "version": "479"
                         }
                     },
                     "temporal_interval": {
@@ -1765,9 +1841,13 @@
                     "log_id": "JS+Uwisp6W6fQRpyBytpXFtS/5epDSVAu/zcUexN7gs=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:12:51Z",
-                            "version": "323"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "N7bqzTXnPktVFG8/h3gi5pcuxCo+mfWyv+XlIIS4cEU=",
+                                "tree_size": 65240567
+                            },
+                            "timestamp": "2025-09-18T17:20:00Z",
+                            "version": "477"
                         }
                     },
                     "temporal_interval": {
@@ -1782,9 +1862,13 @@
                     "log_id": "lLHBirDQV8R74KwEDh8svI3DdXJ7yVHyClJhJoY7pzw=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:13:21Z",
-                            "version": "324"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "vJHecZC18lG3qp9lV2jZoi+7nkPHQx2SmM4VWglNsIk=",
+                                "tree_size": 57634084
+                            },
+                            "timestamp": "2025-09-18T17:20:00Z",
+                            "version": "478"
                         }
                     },
                     "temporal_interval": {
@@ -1799,9 +1883,13 @@
                     "log_id": "VmzVo3a+g9/jQrZ1xJwjJJinabrDgsurSaOHfZqzLQE=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:13:40Z",
-                            "version": "325"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "ONxslVVBTXcSuBVlFOVDuNQoTCdDNLCRVHoHfNLMZfo=",
+                                "tree_size": 88744201
+                            },
+                            "timestamp": "2025-09-18T17:20:00Z",
+                            "version": "480"
                         }
                     },
                     "temporal_interval": {
@@ -1816,9 +1904,13 @@
                     "log_id": "H1bRq5RwSkHdP+r99GmTVTAsFDG/5hNGCJ//rnldzC8=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:14:52Z",
-                            "version": "326"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "HWG3vP/FX6JRs5yyXDfrNoUA7D6TZAib9ZE2Llno0II=",
+                                "tree_size": 68732791
+                            },
+                            "timestamp": "2025-09-18T17:20:00Z",
+                            "version": "481"
                         }
                     },
                     "temporal_interval": {
@@ -2148,9 +2240,13 @@
                     "log_id": "DeHyMCvTDcFAYhIJ6lUu/Ed0fLHX6TDvDkIetH5OqjQ=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2023-11-13T19:46:41Z",
-                            "version": "242"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "fn06m+bnTrDRl01hT1F1TdZPYfxciFZZn7NAayeGOVQ=",
+                                "tree_size": 1958525022
+                            },
+                            "timestamp": "2025-12-11T16:28:50Z",
+                            "version": "495"
                         }
                     },
                     "temporal_interval": {
@@ -2165,9 +2261,13 @@
                     "log_id": "GYbUxyiqb/66A294Kk0BkarOLXIxD67OXXBBLSVMx9Q=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:15:23Z",
-                            "version": "327"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "deSRNfTNPgd9wfzoXIznvi+QUTxuK0R+daC6JGKGK3Q=",
+                                "tree_size": 598614696
+                            },
+                            "timestamp": "2025-12-11T16:28:56Z",
+                            "version": "496"
                         }
                     },
                     "temporal_interval": {
@@ -2182,9 +2282,13 @@
                     "log_id": "rKswcGzr7IQx9BPS9JFfER5CJEOx8qaMTzwrO6ceAsM=",
                     "mmd": 86400,
                     "state": {
-                        "usable": {
-                            "timestamp": "2024-11-26T18:15:42Z",
-                            "version": "328"
+                        "readonly": {
+                            "final_tree_head": {
+                                "sha256_root_hash": "uTgg1k3DUbSFFdXewyyxbsQuCc9RupplMphTwtXqvf4=",
+                                "tree_size": 130815692
+                            },
+                            "timestamp": "2025-12-11T16:28:41Z",
+                            "version": "497"
                         }
                     },
                     "temporal_interval": {
@@ -2273,15 +2377,15 @@
                     "tls_only": true
                 },
                 {
-                    "description": "log.sycamore.ct.letsencrypt.org/2027h2",
+                    "description": "Let's Encrypt 'Sycamore2027h2'",
                     "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEK+2zy2UWRMIyC2jU46+rj8UsyMjLsQIr1Y/6ClbdpWGthUb8y3Maf4zfAZTWW+AH9wAWPLRL5vmtz7Zkh2f2nA==",
                     "log_id": "5eNiR9ku9K2jhYO1NZHbcp/C8ArktnRRdNPd/GqiU4g=",
                     "mmd": 60,
                     "monitoring_url": "https://mon.sycamore.ct.letsencrypt.org/2027h2/",
                     "state": {
-                        "pending": {
-                            "timestamp": "2025-08-20T01:56:20Z",
-                            "version": "402"
+                        "qualified": {
+                            "timestamp": "2025-09-17T03:00:00Z",
+                            "version": "492"
                         }
                     },
                     "submission_url": "https://log.sycamore.ct.letsencrypt.org/2027h2/",
@@ -2349,15 +2453,15 @@
                     "tls_only": true
                 },
                 {
-                    "description": "log.willow.ct.letsencrypt.org/2027h2",
+                    "description": "Let's Encrypt 'Willow2027h2'",
                     "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEYbMDg0qQEEYjsTttdDlouTKhg3fRiMJYNE+Epr/2bXyeQdQOHKQNKv5sbIKxjtE/5Vqo9YjQbnaOeH4Wm4PhdQ==",
                     "log_id": "ppWirZJtb5lujvxJAUJX2LvwRqfWJYm4jcLXh2x45S8=",
                     "mmd": 60,
                     "monitoring_url": "https://mon.willow.ct.letsencrypt.org/2027h2/",
                     "state": {
-                        "pending": {
-                            "timestamp": "2025-08-20T02:01:28Z",
-                            "version": "406"
+                        "qualified": {
+                            "timestamp": "2025-09-17T03:00:00Z",
+                            "version": "493"
                         }
                     },
                     "submission_url": "https://log.willow.ct.letsencrypt.org/2027h2/",
@@ -2755,18 +2859,113 @@
                     "tls_only": true
                 },
                 {
-                    "description": "Gouda 2027h2",
+                    "description": "IPng GmbH 'Gouda2027h2'",
                     "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEPuxPH20sSqUzHGllZceceFvyoSffwBWgX4LKd8wk3A3ayZuwwh2pDuEOsimMxLXFh0IUYz73a9I7kxkUqM+N8w==",
                     "log_id": "GoudaVNi2GSSp7niI2BuNOzp4xC6NPuTBXhdKc5XV+s=",
-                    "mmd": 86400,
+                    "mmd": 60,
                     "monitoring_url": "https://gouda2027h2.mon.ct.ipng.ch/",
                     "state": {
-                        "pending": {
-                            "timestamp": "2025-08-20T01:48:20Z",
-                            "version": "397"
+                        "qualified": {
+                            "timestamp": "2025-09-17T03:00:00Z",
+                            "version": "486"
                         }
                     },
                     "submission_url": "https://gouda2027h2.log.ct.ipng.ch/",
+                    "temporal_interval": {
+                        "end_exclusive": "2028-01-01T00:00:00Z",
+                        "start_inclusive": "2027-07-01T00:00:00Z"
+                    },
+                    "tls_only": true
+                },
+                {
+                    "description": "IPng GmbH 'Halloumi2025h2'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqJxSnCcMhWikCFeWo1RiplGaVEZL5Vn4KEJYZM97Ro5XuTg4h6+n807utfPS7qqpLv5me/ddlpKFGoFfkMBrAQ==",
+                    "log_id": "+3xjpo0eBq3Qg4ibuNQyHLJFROv2/mlyKRkuOD5ebiM=",
+                    "mmd": 60,
+                    "monitoring_url": "https://halloumi2025h2.mon.ct.ipng.ch/",
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-07T18:30:00Z",
+                            "version": "487"
+                        }
+                    },
+                    "submission_url": "https://halloumi2025h2.log.ct.ipng.ch/",
+                    "temporal_interval": {
+                        "end_exclusive": "2026-01-01T00:00:00Z",
+                        "start_inclusive": "2025-07-01T00:00:00Z"
+                    },
+                    "tls_only": true
+                },
+                {
+                    "description": "IPng GmbH 'Halloumi2026h1'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEzdcnGwRjm2ZoA68JFZKfoM4cOPPG2fr0iR72p3XanznOlw57HJ9RlYRNt75gIMIKgB1r0dxY5Jojq1m8uobYjg==",
+                    "log_id": "fz035/iSPY5xZb6w0+q+5yoivkbAy4TEFtTkuYJky8I=",
+                    "mmd": 60,
+                    "monitoring_url": "https://halloumi2026h1.mon.ct.ipng.ch/",
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-07T18:30:00Z",
+                            "version": "488"
+                        }
+                    },
+                    "submission_url": "https://halloumi2026h1.log.ct.ipng.ch/",
+                    "temporal_interval": {
+                        "end_exclusive": "2026-07-01T00:00:00Z",
+                        "start_inclusive": "2026-01-01T00:00:00Z"
+                    },
+                    "tls_only": true
+                },
+                {
+                    "description": "IPng GmbH 'Halloumi2026h2a'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEiGh4zMsdukTgrdk9iPIwz9OfU9TQVi4Mxufpmnlrzv3ivJcxVhrST4XQSeQoF5LlFVIU6PL4IzrYl12BUWn9rQ==",
+                    "log_id": "JuNkblhpISO8ND9HJDWbN5LNJFqI2BXTkzP9mRirRyM=",
+                    "mmd": 60,
+                    "monitoring_url": "https://halloumi2026h2a.mon.ct.ipng.ch/",
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-22T07:30:00Z",
+                            "version": "489"
+                        }
+                    },
+                    "submission_url": "https://halloumi2026h2a.log.ct.ipng.ch/",
+                    "temporal_interval": {
+                        "end_exclusive": "2027-01-01T00:00:00Z",
+                        "start_inclusive": "2026-07-01T00:00:00Z"
+                    },
+                    "tls_only": true
+                },
+                {
+                    "description": "IPng GmbH 'Halloumi2027h1'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEw5SUl2yfd5TFSqUGv7A+I5+TpLe+zEccmtWVQakQQtOHYKqH8TbycalFx5xaqE5PU4NEwwnAJ9FWeT/6QaovZw==",
+                    "log_id": "ROgi/CurDpLu0On61pZkYCd20Bdg4IkFCckjobA/w38=",
+                    "mmd": 60,
+                    "monitoring_url": "https://halloumi2027h1.mon.ct.ipng.ch/",
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-07T18:30:00Z",
+                            "version": "490"
+                        }
+                    },
+                    "submission_url": "https://halloumi2027h1.log.ct.ipng.ch/",
+                    "temporal_interval": {
+                        "end_exclusive": "2027-07-01T00:00:00Z",
+                        "start_inclusive": "2027-01-01T00:00:00Z"
+                    },
+                    "tls_only": true
+                },
+                {
+                    "description": "IPng GmbH 'Halloumi2027h2'",
+                    "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAErmKbFkPG7QfQUARhbIik8vVbIkXhK+YMB6TvLZkyhnzv7wedn+l7VChqovZHKOQXmZEd4B+3ljovIpQz2HmyHA==",
+                    "log_id": "CRV/Yy1Gx/dtlSZUk7wPALOVrF2zorJr+wQ9ukrGOJM=",
+                    "mmd": 60,
+                    "monitoring_url": "https://halloumi2027h2.mon.ct.ipng.ch/",
+                    "state": {
+                        "qualified": {
+                            "timestamp": "2025-10-07T18:30:00Z",
+                            "version": "491"
+                        }
+                    },
+                    "submission_url": "https://halloumi2027h2.log.ct.ipng.ch/",
                     "temporal_interval": {
                         "end_exclusive": "2028-01-01T00:00:00Z",
                         "start_inclusive": "2027-07-01T00:00:00Z"
@@ -2776,5 +2975,5 @@
             ]
         }
     ],
-    "version": "463"
+    "version": "497"
 }
