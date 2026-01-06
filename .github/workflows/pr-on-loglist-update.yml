@@ -1,0 +1,54 @@
+name: Scheduled check and PR creation on log list update
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  schedule:
+    # Run Hourly
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    name: Hourly check for log list updates
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v6
+
+    - name: Setup git
+      run: |
+          git config --global user.email "gh@crt.sh"
+          git config --global user.name "ctlint"
+
+    - name: Fetch all branches
+      run: git fetch origin
+
+    - name: Run fetch_ct_log_lists.sh
+      run: chmod +x fetch_ct_log_lists.sh; ./fetch_ct_log_lists.sh
+
+    - name: Check for changes in log lists
+      id: check_changes
+      run: |
+        git fetch origin main
+        if [[ $(git diff -U0 --staged "*.json" | grep "^\+\s" | grep -v "\"version\"" | grep -v "\"log_list_timestamp\"") ]]; then
+          echo "At least one log list has been updated substantively"
+          echo "log_list_updated=true" >> $GITHUB_ENV
+        else
+          echo "No log lists have been updated"
+          echo "log_list_updated=false" >> $GITHUB_ENV
+        fi
+
+    - name: Create Pull Request
+      if: env.log_list_updated == 'true'
+      uses: peter-evans/create-pull-request@v8
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base: main
+        branch: auto-log-list-update
+        title: "Log list update"
+        body: "This pull request was automatically created due to a log list update."
+        commit-message: Log list update
