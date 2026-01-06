@@ -34,7 +34,7 @@ jobs:
       id: check_changes
       run: |
         git fetch origin main
-        if [[ $(git diff -U0 --staged "*.json" | grep "^\+\s" | grep -v "\"version\"" | grep -v "\"log_list_timestamp\"") ]]; then
+        if [[ $(git diff -U0 "*.json" | grep "^\+\s" | grep -v "\"version\"" | grep -v "\"log_list_timestamp\"") ]]; then
           echo "At least one log list has been updated substantively"
           echo "log_list_updated=true" >> $GITHUB_ENV
         else
