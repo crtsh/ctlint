@@ -1,5 +1,5 @@
-github.com/crtsh/ccadb_data v0.0.0-20251223200428-bfdf065a17bd h1:cwjMh0EgJMyLbz/bXGLQNOdBrP6YMhxSggm/kvQn1FU=
-github.com/crtsh/ccadb_data v0.0.0-20251223200428-bfdf065a17bd/go.mod h1:mqO/B2IAHrFm8+blGTMCIlR7TvVaAdRkIO55HOUo0h8=
+github.com/crtsh/ccadb_data v0.0.0-20260107214551-dbb74153cd52 h1:YsQ0+7wumPQb8WzYyXzKbs8ZxNVLVzG3wTMyh9tKTVU=
+github.com/crtsh/ccadb_data v0.0.0-20260107214551-dbb74153cd52/go.mod h1:mqO/B2IAHrFm8+blGTMCIlR7TvVaAdRkIO55HOUo0h8=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/certificate-transparency-go v1.3.2 h1:9ahSNZF2o7SYMaKaXhAumVEzXB2QaayzII9C8rv7v+A=
