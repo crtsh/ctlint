@@ -1,5 +1,5 @@
 {
-  "log_list_timestamp": "2025-12-01T10:52:20Z",
+  "log_list_timestamp": "2026-01-05T13:53:16Z",
   "operators": [
     {
       "name": "Google",
@@ -901,7 +901,24 @@
           }
         }
       ],
-      "tiled_logs": []
+      "tiled_logs": [
+        {
+          "description": "TrustAsia Luoshu2027",
+          "log_id": "VzRIzG4dLA3JS2nyh9Hv5IPHolxQxTILuzrep29usEE=",
+          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEumSYzy6dUQlwTckPzKMKApMRinqxHIBlLfmrvx1SdMH1RTACi1wb1V18ss8YjlaC7Pch2OQa8OfRevub4Y9BDQ==",
+          "submission_url": "",
+          "monitoring_url": "",
+          "mmd": 0,
+          "state": {
+            "qualified": {
+              "timestamp": "2026-01-05T13:53:16Z"
+            },
+            "usable": {
+              "timestamp": "2026-02-09T10:52:20Z"
+            }
+          }
+        }
+      ]
     },
     {
       "name": "Geomys",
