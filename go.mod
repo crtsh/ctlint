@@ -5,7 +5,7 @@ go 1.24.6
 toolchain go1.24.11
 
 require (
-	github.com/crtsh/ccadb_data v0.0.0-20260107214551-dbb74153cd52
+	github.com/crtsh/ccadb_data v1.20260115.212046
 	github.com/google/certificate-transparency-go v1.3.2
 	software.sslmate.com/src/certspotter v0.24.0
 )
