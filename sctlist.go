@@ -11,7 +11,7 @@ import (
 	"github.com/google/certificate-transparency-go/x509util"
 )
 
-func checkSCTListExtension(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byte, sctListExt pkix.Extension) []string {
+func checkSCTListExtension(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup, sha256IssuerSPKI *[sha256.Size]byte, sctListExt pkix.Extension) []string {
 	var findings []string
 
 	var sctListExtValue []byte
@@ -28,7 +28,7 @@ func checkSCTListExtension(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Siz
 	} else if scts, err = x509util.ParseSCTsFromSCTList(&sctList); err != nil {
 		findings = append(findings, "E: SCTs could not be parsed from SCT list")
 	} else {
-		findings = append(findings, checkSCTListCompliance(cert, sha256IssuerSPKI, scts)...)
+		findings = append(findings, checkSCTListCompliance(cert, ctPolicyGroup, sha256IssuerSPKI, scts)...)
 	}
 
 	return findings
