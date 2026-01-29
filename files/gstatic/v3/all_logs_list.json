@@ -1,7 +1,7 @@
 {
   "is_all_logs": true,
-  "version": "82.2",
-  "log_list_timestamp": "2026-01-25T12:54:32Z",
+  "version": "83.1",
+  "log_list_timestamp": "2026-01-29T12:53:20Z",
   "operators": [
     {
       "name": "Google",
@@ -1061,8 +1061,8 @@
           "url": "https://yeti2025.ct.digicert.com/log/",
           "mmd": 86400,
           "state": {
-            "retired": {
-              "timestamp": "2025-07-24T00:00:00Z"
+            "rejected": {
+              "timestamp": "2026-01-08T00:00:00Z"
             }
           },
           "temporal_interval": {
@@ -1157,8 +1157,8 @@
           "url": "https://nessie2025.ct.digicert.com/log/",
           "mmd": 86400,
           "state": {
-            "retired": {
-              "timestamp": "2025-04-15T23:00:00Z"
+            "rejected": {
+              "timestamp": "2026-01-08T00:00:00Z"
             }
           },
           "temporal_interval": {
@@ -1795,12 +1795,8 @@
           "url": "https://sabre2025h2.ct.sectigo.com/",
           "mmd": 86400,
           "state": {
-            "readonly": {
-              "timestamp": "2025-09-18T17:20:00Z",
-              "final_tree_head": {
-                "sha256_root_hash": "eJj4IHvdYpljVsW/YCery+QsSRHbuYBME7H912a5P2Y=",
-                "tree_size": 1213760846
-              }
+            "rejected": {
+              "timestamp": "2026-01-08T00:00:00Z"
             }
           },
           "temporal_interval": {
@@ -1891,12 +1887,8 @@
           "url": "https://mammoth2025h2.ct.sectigo.com/",
           "mmd": 86400,
           "state": {
-            "readonly": {
-              "timestamp": "2025-08-29T20:40:00Z",
-              "final_tree_head": {
-                "sha256_root_hash": "aLJ1GqZiobxICL7qQFPCZzdkjU/TKvnA/CIVqU+LDy4=",
-                "tree_size": 865235446
-              }
+            "rejected": {
+              "timestamp": "2026-01-08T00:00:00Z"
             }
           },
           "temporal_interval": {
@@ -2279,12 +2271,8 @@
           "url": "https://oak.ct.letsencrypt.org/2025h2/",
           "mmd": 86400,
           "state": {
-            "readonly": {
-              "timestamp": "2025-12-12T22:30:00Z",
-              "final_tree_head": {
-                "sha256_root_hash": "fn06m+bnTrDRl01hT1F1TdZPYfxciFZZn7NAayeGOVQ=",
-                "tree_size": 1958525022
-              }
+            "rejected": {
+              "timestamp": "2026-01-27T00:00:00Z"
             }
           },
           "temporal_interval": {
