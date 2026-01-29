@@ -10,9 +10,21 @@ CT compliance linter
 
 ## Features
 
-- Determines which CT logs are currently or once approved for each CT Policy by bundling and parsing the Chrome [all_logs_list.json](https://googlechrome.github.io/CertificateTransparency/log_lists.html), Apple [current_log_list.json](https://support.apple.com/en-us/103214), and Mozilla [Known CT Logs](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#Known_CT_Logs) log lists.
+- Determines which CT logs are currently or once approved for each CT Policy by bundling and parsing the following log lists:
+  - For Server Authentication Certificates:
+    - Chrome [all_logs_list.json](https://googlechrome.github.io/CertificateTransparency/log_lists.html)
+    - Apple [current_log_list.json](https://support.apple.com/en-us/103214)
+    - Mozilla [Known CT Logs](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#Known_CT_Logs)
+  - For Mark Certificates:
+    - BIMIGroup [Approved CT Logs (see Appendix F)](https://bimigroup.org/resources/VMC_Requirements_latest.pdf).
 
-- Audits certificates against the requirements of the [Chrome CT Policy](https://googlechrome.github.io/CertificateTransparency/ct_policy.html), the [Apple CT Policy](https://support.apple.com/en-us/103214), and the [Mozilla CT Policy](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#CT_Policy), to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs.
+- Audits certificates against the requirements of each applicable CT Policy, to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs:
+  - For Server Authentication Certificates:
+    - the [Chrome CT Policy](https://googlechrome.github.io/CertificateTransparency/ct_policy.html)
+    - the [Apple CT Policy](https://support.apple.com/en-us/103214)
+    - the [Mozilla CT Policy](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#CT_Policy)
+  - For Mark Certificates:
+    - the CT requirements of the [Mark Certificate Guidelines](https://bimigroup.org/resources/VMC_Requirements_latest.pdf)
 
 - Identifies precertificate issuance from a Precertificate Signing CA beyond the sunset date in the TLS BRs.
 
