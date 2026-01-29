@@ -13,7 +13,7 @@ import (
 	"github.com/google/certificate-transparency-go/x509"
 )
 
-func checkSCTListCompliance(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Size]byte, scts []*ctgo.SignedCertificateTimestamp) []string {
+func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup, sha256IssuerSPKI *[sha256.Size]byte, scts []*ctgo.SignedCertificateTimestamp) []string {
 	var findings []string
 
 	tbsCert, err := x509.RemoveSCTList(cert.RawTBSCertificate)
@@ -42,17 +42,16 @@ func checkSCTListCompliance(cert *x509.Certificate, sha256IssuerSPKI *[sha256.Si
 	if time.Now().After(cert.NotAfter) {
 		findings = append(findings, "N: SCT list in expired certificate not checked for CT Policy compliance")
 	} else {
-		// Server Auth certificates are checked against Chrome, Apple, Mozilla
-		if IsServerAuthCert(cert) {
-			findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, gstaticV3AllLogsList, "Chrome")...)
-			findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, appleCurrentLogList, "Apple")...)
-			findings = append(findings, checkSCTListComplianceWithCTPolicy(cert, scts, mozillaV3KnownLogsList, "Mozilla")...)
+		switch ctPolicyGroup {
+		case ServerAuthenticationCertificate:
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, gstaticV3AllLogsList, "Chrome")...)
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, appleCurrentLogList, "Apple")...)
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, mozillaV3KnownLogsList, "Mozilla")...)
+		case MarkCertificate:
+			findings = append(findings, checkSCTListComplianceWithMarkCertificateGuidelines(scts, bimiV3ApprovedLogsList)...)
+		default:
+			findings = append(findings, "I: SCT list has no applicable CT Policies")
 		}
-		if IsMarkCert(cert) {
-			// Mark Certificates are checked against the Mark Certificate Requirements
-			findings = append(findings, checkSCTListComplianceWithMCRPolicy(scts, crtshV3AllLogsList)...)
-		}
-
 	}
 
 	return findings
@@ -82,23 +81,20 @@ func findLogByKeyHash(keyHash [sha256.Size]byte, logList *loglist3.LogList) (*lo
 	return nil, "", false
 }
 
-func checkSCTListComplianceWithMCRPolicy(scts []*ctgo.SignedCertificateTimestamp, logList *loglist3.LogList) []string {
-	var findings []string
-
-	/* Before issuance of a Mark Certificate, the CA SHALL log the Mark Certificate pre-certificate
-	(including all the data included in the Subject field of the certificate plus the Mark Representation) to one or more public CT logs.
-	The list of CT logs that are acceptable for the fulfillment of this requirement is found in Appendix F (Digicert Gorgon)*/
-
+func checkSCTListComplianceWithMarkCertificateGuidelines(scts []*ctgo.SignedCertificateTimestamp, logList *loglist3.LogList) []string {
+	// Mark Certificate Guidelines: "Before issuance of a Mark Certificate, the CA SHALL log the Mark Certificate pre-certificate (including all the data included in the Subject field of the certificate plus the Mark Representation) to one or more public CT logs. The list of CT logs that are acceptable for the fulfillment of this requirement is found in Appendix F.
 	for _, sct := range scts {
-		if ctLog, _, _ := findLogByKeyHash(sct.LogID.KeyID, logList); ctLog == nil || ctLog.Description != "DigiCert Gorgon" {
-			findings = append(findings, "E: Incorrect log for Mark Certificate, only Digicert Gorgon is allowed")
+		if ctLog, _, _ := findLogByKeyHash(sct.LogID.KeyID, logList); ctLog != nil && ctLog.State != nil {
+			if ctLog.State.Usable != nil && !ctLog.State.Usable.Timestamp.After(time.Now()) {
+				return nil
+			}
 		}
 	}
 
-	return findings
+	return []string{"E: SCT list contains no SCTs from logs currently approved by the Mark Certificate Guidelines"}
 }
 
-func checkSCTListComplianceWithCTPolicy(cert *x509.Certificate, scts []*ctgo.SignedCertificateTimestamp, logList *loglist3.LogList, ctPolicyName string) []string {
+func checkSCTListComplianceWithServerAuthenticationCTPolicy(cert *x509.Certificate, scts []*ctgo.SignedCertificateTimestamp, logList *loglist3.LogList, ctPolicyName string) []string {
 	var findings []string
 
 	// Chrome CT Policy: "Chrome will enforce CT so long as the log_list_timestamp of the freshest version of the log list Chrome stores is within the past 70 days (10 weeks), and uses a log list format that Chrome understands."
