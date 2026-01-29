@@ -58,4 +58,4 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 ## Caveats
 
-- After a log's temporal interval expires, the log is removed from the various log lists. Consequently, `ctlint` can only audit CT Policy compliance of SCTs embedded in certificates that have not yet expired.
+- `ctlint` can only audit CT Policy compliance of SCTs embedded in certificates that have not yet expired, because the various log lists do not preserve details of historic log state transitions that may be relevant.
