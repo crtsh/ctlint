@@ -13,10 +13,11 @@ const gstaticV3AllLogsListFilename = "files/gstatic/v3/all_logs_list.json"
 const appleCurrentLogListFilename = "files/apple/current_log_list.json"
 const crtshV3AllLogsListFilename = "files/crtsh/v3/all_logs_list.json"
 const mozillaV3KnownLogsListFilename = "files/mozilla/v3/known_logs_list.json"
+const bimiV3ApprovedLogsListFilename = "files/bimi/v3/approved_logs_list.json"
 
 //go:embed files/*
 var files embed.FS
-var gstaticV3AllLogsList, appleCurrentLogList, crtshV3AllLogsList, mozillaV3KnownLogsList *loglist3.LogList
+var gstaticV3AllLogsList, appleCurrentLogList, crtshV3AllLogsList, mozillaV3KnownLogsList, bimiV3ApprovedLogsList *loglist3.LogList
 var logSignatureVerifierMap map[[sha256.Size]byte]*ctgo.SignatureVerifier
 var temporalIntervalMap map[[sha256.Size]byte]*loglist3.TemporalInterval
 
@@ -49,6 +50,12 @@ func LoadLogLists() error {
 	if mozillaV3KnownLogsList, err = loadLogList(mozillaV3KnownLogsListFilename); err != nil {
 		return err
 	} else if err = addSignatureVerifiersForLogList(mozillaV3KnownLogsList); err != nil {
+		return err
+	}
+
+	if bimiV3ApprovedLogsList, err = loadLogList(bimiV3ApprovedLogsListFilename); err != nil {
+		return err
+	} else if err = addSignatureVerifiersForLogList(bimiV3ApprovedLogsList); err != nil {
 		return err
 	}
 
