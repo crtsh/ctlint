@@ -28,7 +28,7 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 
 	sv := logSignatureVerifierMap[([sha256.Size]byte)(sct.LogID.KeyID)]
 	if sv == nil {
-		return []string{"B: Signature verifier is not available"}
+		return []string{"N: SCT is from an unknown log"}
 	}
 
 	// Get the log description, for display purposes.  The crt.sh and gstatic log lists should cover all known logs between them.
