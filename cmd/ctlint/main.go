@@ -7,6 +7,7 @@ import (
 
 	"github.com/crtsh/ctlint"
 
+	"github.com/crtsh/ctloglists"
 	"github.com/google/certificate-transparency-go/x509"
 )
 
@@ -20,7 +21,7 @@ func main() {
 	}
 
 	var err error
-	if err = ctlint.LoadLogLists(); err != nil {
+	if err = ctloglists.Load(); err != nil {
 		fmt.Printf("Error: %v\n", err)
 		return
 	}

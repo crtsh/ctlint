@@ -10,13 +10,7 @@ CT compliance linter
 
 ## Features
 
-- Determines which CT logs are currently or once approved for each CT Policy by bundling and parsing the following log lists:
-  - For Server Authentication Certificates:
-    - Chrome [all_logs_list.json](https://googlechrome.github.io/CertificateTransparency/log_lists.html)
-    - Apple [current_log_list.json](https://support.apple.com/en-us/103214)
-    - Mozilla [Known CT Logs](https://wiki.mozilla.org/SecurityEngineering/Certificate_Transparency#Known_CT_Logs)
-  - For Mark Certificates:
-    - BIMIGroup [Approved CT Logs (see Appendix F)](https://bimigroup.org/resources/VMC_Requirements_latest.pdf).
+- Determines, using [crtsh/ctloglists](https://github.com/crtsh/ctloglists), which CT logs are currently or once approved for each CT Policy.
 
 - Audits certificates against the requirements of each applicable CT Policy, to ensure that embedded SCT lists contain a sufficient quantity and variety of SCTs from approved CT logs:
   - For Server Authentication Certificates:

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/crtsh/ccadb_data"
+	"github.com/crtsh/ctloglists"
 	ctgo "github.com/google/certificate-transparency-go"
 	"github.com/google/certificate-transparency-go/loglist3"
 	"github.com/google/certificate-transparency-go/x509"
@@ -32,7 +33,7 @@ func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup,
 
 		findings = append(findings, verifySCT(tbsCert, sha256IssuerSPKI, sct)...)
 
-		if ti := temporalIntervalMap[sct.LogID.KeyID]; ti != nil {
+		if ti := ctloglists.TemporalIntervalMap[sct.LogID.KeyID]; ti != nil {
 			if cert.NotAfter.Before(ti.StartInclusive) || !cert.NotAfter.Before(ti.EndExclusive) {
 				findings = append(findings, "E: Certificate expires outside log's temporal interval")
 			}
@@ -44,11 +45,11 @@ func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup,
 	} else {
 		switch ctPolicyGroup {
 		case ServerAuthenticationCertificate:
-			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, gstaticV3AllLogsList, "Chrome")...)
-			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, appleCurrentLogList, "Apple")...)
-			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, mozillaV3KnownLogsList, "Mozilla")...)
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, ctloglists.GstaticV3All, "Chrome")...)
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, ctloglists.AppleCurrent, "Apple")...)
+			findings = append(findings, checkSCTListComplianceWithServerAuthenticationCTPolicy(cert, scts, ctloglists.MozillaV3Known, "Mozilla")...)
 		case MarkCertificate:
-			findings = append(findings, checkSCTListComplianceWithMarkCertificateGuidelines(scts, bimiV3ApprovedLogsList)...)
+			findings = append(findings, checkSCTListComplianceWithMarkCertificateGuidelines(scts, ctloglists.BimiV3Approved)...)
 		default:
 			findings = append(findings, "I: SCT list has no applicable CT Policies")
 		}

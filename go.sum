@@ -1,5 +1,7 @@
 github.com/crtsh/ccadb_data v1.20260205.223323 h1:MuPwq+VUmBqbC1FZYfz+zwEb6kYPd44byQp+6EjpgK8=
 github.com/crtsh/ccadb_data v1.20260205.223323/go.mod h1:M0/wpxYjxeu4Kj/ZUBCWT5JBCAYzY/CqQQjiHvHF0eA=
+github.com/crtsh/ctloglists v0.0.0-20260206215416-d562a730086a h1:WkviNqU8GTru/Kyg+QMonKE6zpwzoZhsndbSTErEJsU=
+github.com/crtsh/ctloglists v0.0.0-20260206215416-d562a730086a/go.mod h1:Qt1YFGwD7aNUYD7ANaSmuhPxT9Y3soiBCqbZCDa3UKQ=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/certificate-transparency-go v1.3.2 h1:9ahSNZF2o7SYMaKaXhAumVEzXB2QaayzII9C8rv7v+A=
@@ -22,5 +24,3 @@ golang.org/x/crypto v0.47.0 h1:V6e3FRj+n4dbpw86FJ8Fv7XVOql7TEwpHapKoMJ/GO8=
 golang.org/x/crypto v0.47.0/go.mod h1:ff3Y9VzzKbwSSEzWqJsJVBnWmRwRSHt/6Op5n9bQc4A=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
-software.sslmate.com/src/certspotter v0.24.0 h1:S7sguvyyQ/FOj9NEupsXXijjMYzuNa/wDAWLt/gT0Co=
-software.sslmate.com/src/certspotter v0.24.0/go.mod h1:LddeMgVHRqqjvrDZT4cnLC9TPydBJVsLbKm5p7wlx4k=
