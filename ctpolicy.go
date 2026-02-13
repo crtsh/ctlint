@@ -22,6 +22,7 @@ func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup,
 		return []string{"E: Cannot remove SCT List extension to derive TBSCertificate"}
 	}
 
+	latestSCTTimestamp := uint64(0)
 	for _, sct := range scts {
 		if sha256IssuerSPKI == nil {
 			if encoded, found := ccadb_data.GetIssuerSPKISHA256ByKeyIdentifier(base64.StdEncoding.EncodeToString(cert.AuthorityKeyId)); found {
@@ -38,6 +39,14 @@ func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup,
 				findings = append(findings, "E: Certificate expires outside log's temporal interval")
 			}
 		}
+
+		if sct.Timestamp > latestSCTTimestamp {
+			latestSCTTimestamp = sct.Timestamp
+		}
+	}
+
+	if cert.NotBefore.Before(time.UnixMilli(int64(latestSCTTimestamp)).Add(-48 * time.Hour)) {
+		findings = append(findings, "E: Certificate notBefore timestamp >48 hours older than at least one embedded SCT")
 	}
 
 	if time.Now().After(cert.NotAfter) {
