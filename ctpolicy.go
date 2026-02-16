@@ -14,6 +14,8 @@ import (
 	"github.com/google/certificate-transparency-go/x509"
 )
 
+var SC62EffectiveDate = time.Date(2023, time.September, 15, 0, 0, 0, 0, time.UTC)
+
 func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup, sha256IssuerSPKI *[sha256.Size]byte, scts []*ctgo.SignedCertificateTimestamp) []string {
 	var findings []string
 
@@ -45,8 +47,10 @@ func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup,
 		}
 	}
 
-	if cert.NotBefore.Before(time.UnixMilli(int64(latestSCTTimestamp)).Add(-48 * time.Hour)) {
-		findings = append(findings, "E: Certificate notBefore timestamp >48 hours older than at least one embedded SCT")
+	if !cert.NotBefore.Before(SC62EffectiveDate) {
+		if cert.NotBefore.Before(time.UnixMilli(int64(latestSCTTimestamp)).Add(-48 * time.Hour)) {
+			findings = append(findings, "E: Certificate notBefore timestamp >48 hours older than at least one embedded SCT")
+		}
 	}
 
 	if time.Now().After(cert.NotAfter) {
