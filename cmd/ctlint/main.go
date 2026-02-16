@@ -21,7 +21,7 @@ func main() {
 	}
 
 	var err error
-	if err = ctloglists.Load(); err != nil {
+	if err = ctloglists.LoadLogLists(); err != nil {
 		fmt.Printf("Error: %v\n", err)
 		return
 	}
