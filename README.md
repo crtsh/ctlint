@@ -50,6 +50,8 @@ Here are some real-world examples of CT-related mishaps that `ctlint` can detect
 
 - [SCT extensions not base64 decoded and then embedded in certificates](https://www.mail-archive.com/dev-security-policy@mozilla.org/msg02291.html)
 
+- [Delayed issuance of a certificate containing embedded SCTs](https://bugzilla.mozilla.org/show_bug.cgi?id=2016672)
+
 ## Caveats
 
 - `ctlint` can only audit CT Policy compliance of SCTs embedded in certificates that have not yet expired, because the various log lists do not preserve details of historic log state transitions that may be relevant.
