@@ -3,6 +3,7 @@ package ctlint
 import (
 	"crypto/sha256"
 	"fmt"
+	"strings"
 
 	"github.com/crtsh/ctloglists"
 
@@ -34,22 +35,27 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 	}
 
 	// Get the log description, for display purposes.  The crt.sh and gstatic log lists should cover all known logs between them.
-	log, _, _ := findLogByKeyHash(sct.LogID.KeyID, ctloglists.CrtshV3All)
+	log, operator, _ := findLogByKeyHash(sct.LogID.KeyID, ctloglists.CrtshV3All)
 	if log == nil {
-		log, _, _ = findLogByKeyHash(sct.LogID.KeyID, ctloglists.GstaticV3All)
+		log, operator, _ = findLogByKeyHash(sct.LogID.KeyID, ctloglists.GstaticV3All)
+	}
+	// Ensure that the Operator name is prepended to the log description, if not already present, for display purposes.
+	description := log.Description
+	if !strings.Contains(description, operator) {
+		description = operator + " " + description
 	}
 
 	err := sv.VerifySCTSignature(*sct, ctgo.LogEntry{Leaf: merkleTreeLeaf})
 	if err != nil {
 		if log != nil {
-			return []string{fmt.Sprintf("E: SCT has an invalid signature purporting to be from %s", log.Description)}
+			return []string{fmt.Sprintf("E: SCT has an invalid signature purporting to be from %s", description)}
 		} else {
 			return []string{"E: SCT has an invalid signature"}
 		}
 	}
 
 	if log != nil {
-		return []string{fmt.Sprintf("I: SCT has a valid signature from %s", log.Description)}
+		return []string{fmt.Sprintf("I: SCT has a valid signature from %s", description)}
 	} else {
 		return []string{"I: SCT has a valid signature"}
 	}
