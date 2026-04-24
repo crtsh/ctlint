@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/crtsh/ctloglists"
-
 	ctgo "github.com/google/certificate-transparency-go"
 )
 
@@ -34,15 +33,22 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 		return []string{"N: SCT is from an unknown log"}
 	}
 
-	// Get the log description, for display purposes.  The crt.sh and gstatic log lists should cover all known logs between them.
+	// Get the log description, for display purposes.  The crt.sh, gstatic, and mimic log lists should between them cover all known SCT signers.
 	log, operator, _ := findLogByKeyHash(sct.LogID.KeyID, ctloglists.CrtshV3All)
 	if log == nil {
 		log, operator, _ = findLogByKeyHash(sct.LogID.KeyID, ctloglists.GstaticV3All)
 	}
+	if log == nil {
+		log, operator, _ = findLogByKeyHash(sct.LogID.KeyID, ctloglists.LogMimics)
+	}
+
 	// Ensure that the Operator name is prepended to the log description, if not already present, for display purposes.
-	description := log.Description
-	if !strings.Contains(description, operator) {
-		description = operator + " " + description
+	description := ""
+	if log != nil {
+		description = "(" + log.Description + ")"
+		if operator != "" && !strings.Contains(description, operator) {
+			description = operator + " " + description
+		}
 	}
 
 	err := sv.VerifySCTSignature(*sct, ctgo.LogEntry{Leaf: merkleTreeLeaf})
