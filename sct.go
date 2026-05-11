@@ -16,7 +16,7 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 	}
 
 	var findings []string
-	if time.UnixMilli(int64(sct.Timestamp)).After(time.Now()) {
+	if time.UnixMilli(int64(sct.Timestamp)).After(time.Now().Add(time.Second)) {
 		findings = append(findings, "E: SCT timestamp is in the future")
 	}
 
