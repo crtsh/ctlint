@@ -1,5 +1,5 @@
-github.com/crtsh/ccadb_data v1.20260511.154500 h1:hkGt1emAYVzTCNzLWJxlW34777MADOdLjlPs/uiVwj4=
-github.com/crtsh/ccadb_data v1.20260511.154500/go.mod h1:avWCZWp3bwPa5XuUWNoCeHgMUdOW2tccdnUJHvfmc74=
+github.com/crtsh/ccadb_data v1.20260511.165100 h1:HgGO4I/wCyZupqTWMB+7bJXUSuOVrpVwlfSuM/SIZsg=
+github.com/crtsh/ccadb_data v1.20260511.165100/go.mod h1:avWCZWp3bwPa5XuUWNoCeHgMUdOW2tccdnUJHvfmc74=
 github.com/crtsh/ctloglists v1.20260511.154900 h1:jRvl9MFkUOX9WkdZXivX8vRDqRoCmnObduQfEsBnG48=
 github.com/crtsh/ctloglists v1.20260511.154900/go.mod h1:i3nWh3QlTadEn3cgrJmI0QCwjV/iimvuH0zUfODEMnQ=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
