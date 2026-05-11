@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/crtsh/ctloglists"
 	ctgo "github.com/google/certificate-transparency-go"
@@ -12,6 +13,11 @@ import (
 func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.SignedCertificateTimestamp) []string {
 	if sct.SCTVersion != ctgo.V1 {
 		return []string{"E: SCT version is not V1"}
+	}
+
+	var findings []string
+	if time.UnixMilli(int64(sct.Timestamp)).After(time.Now()) {
+		findings = append(findings, "E: SCT timestamp is in the future")
 	}
 
 	merkleTreeLeaf := ctgo.MerkleTreeLeaf{
@@ -30,7 +36,7 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 
 	sv := ctloglists.LogSignatureVerifierMap[([sha256.Size]byte)(sct.LogID.KeyID)]
 	if sv == nil {
-		return []string{"N: SCT is from an unknown log"}
+		return append(findings, "N: SCT is from an unknown log")
 	}
 
 	// Get the log description, for display purposes.  The crt.sh, gstatic, and mimic log lists should between them cover all known SCT signers.
@@ -54,15 +60,15 @@ func verifySCT(tbsCert []byte, sha256IssuerSPKI *[sha256.Size]byte, sct *ctgo.Si
 	err := sv.VerifySCTSignature(*sct, ctgo.LogEntry{Leaf: merkleTreeLeaf})
 	if err != nil {
 		if log != nil {
-			return []string{fmt.Sprintf("E: SCT has an invalid signature purporting to be from %s", description)}
+			return append(findings, fmt.Sprintf("E: SCT has an invalid signature purporting to be from %s", description))
 		} else {
-			return []string{"E: SCT has an invalid signature"}
+			return append(findings, "E: SCT has an invalid signature")
 		}
 	}
 
 	if log != nil {
-		return []string{fmt.Sprintf("I: SCT has a valid signature from %s", description)}
+		return append(findings, fmt.Sprintf("I: SCT has a valid signature from %s", description))
 	} else {
-		return []string{"I: SCT has a valid signature"}
+		return append(findings, "I: SCT has a valid signature")
 	}
 }
