@@ -12,6 +12,6 @@ require (
 	github.com/go-logr/logr v1.4.3 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.28.0 // indirect
-	golang.org/x/crypto v0.51.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
 	k8s.io/klog/v2 v2.140.0 // indirect
 )
