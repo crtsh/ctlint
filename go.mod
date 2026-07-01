@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/crtsh/ccadb_data v1.20260630.153216
-	github.com/crtsh/ctloglists v1.20260625.180924
+	github.com/crtsh/ctloglists v1.20260701.151600
 	github.com/google/certificate-transparency-go v1.3.3
 )
 
@@ -12,6 +12,6 @@ require (
 	github.com/go-logr/logr v1.4.3 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.28.0 // indirect
-	golang.org/x/crypto v0.52.0 // indirect
+	golang.org/x/crypto v0.53.0 // indirect
 	k8s.io/klog/v2 v2.140.0 // indirect
 )
