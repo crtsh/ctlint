@@ -14,6 +14,9 @@ import (
 	"github.com/google/certificate-transparency-go/x509"
 )
 
+// SC62EffectiveDate is the effective date of CA/Browser Forum Ballot SC-62,
+// which introduced the requirement that certificate notBefore must not be
+// more than 48 hours before the earliest embedded SCT timestamp.
 var SC62EffectiveDate = time.Date(2023, time.September, 15, 0, 0, 0, 0, time.UTC)
 
 func checkSCTListCompliance(cert *x509.Certificate, ctPolicyGroup CTPolicyGroup, sha256IssuerSPKI *[sha256.Size]byte, scts []*ctgo.SignedCertificateTimestamp) []string {

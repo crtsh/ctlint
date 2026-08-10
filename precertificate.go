@@ -25,6 +25,11 @@ func init() {
 	}
 }
 
+// CheckPrecertificate lints a precertificate for CT compliance. It validates
+// the poison extension (critical flag, content, uniqueness), checks for
+// disallowed extensions (SCT list, OCSP SCT list), and flags issuance from
+// a Precertificate Signing CA after the March 15, 2026 sunset date in the
+// TLS Baseline Requirements.
 func CheckPrecertificate(precert *x509.Certificate) []string {
 	var findings []string
 
