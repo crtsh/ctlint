@@ -1,7 +1,7 @@
 github.com/crtsh/ccadb_data v1.20260902.132537 h1:FEs6uken4U67F9oMKvNIDo2WkkoAToVxuxcP+4Uwkmg=
 github.com/crtsh/ccadb_data v1.20260902.132537/go.mod h1:avWCZWp3bwPa5XuUWNoCeHgMUdOW2tccdnUJHvfmc74=
-github.com/crtsh/ctloglists v1.20260901.14042 h1:fgouXUzyw9mTvxuauG5QbhoiS7TB47zKNjLtLvZxpMk=
-github.com/crtsh/ctloglists v1.20260901.14042/go.mod h1:qico6//22OeMcK1VuwMQvsyKrXqtpAvHjzSfHx+RMmo=
+github.com/crtsh/ctloglists v1.20260905.80444 h1:qdscUSlA+q5+tX5WxKtoVpEm6KbfmRja4zX/ApIySYA=
+github.com/crtsh/ctloglists v1.20260905.80444/go.mod h1:qico6//22OeMcK1VuwMQvsyKrXqtpAvHjzSfHx+RMmo=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/go-logr/logr v1.4.4 h1:tG4xh9yMsRCAiodLVTxyrkzSZ9+o0L1Kg/+cPVcbP/8=
