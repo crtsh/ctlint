@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/crtsh/ccadb_data v1.20260902.132537
-	github.com/crtsh/ctloglists v1.20260905.80444
+	github.com/crtsh/ctloglists v1.20260906.53227
 	github.com/google/certificate-transparency-go v1.3.3
 )
 
