@@ -3,7 +3,7 @@ module github.com/crtsh/ctlint
 go 1.26.0
 
 require (
-	github.com/crtsh/ccadb_data v1.20260915.144344
+	github.com/crtsh/ccadb_data v1.20260917.72246
 	github.com/crtsh/ctloglists v1.20260914.151600
 	github.com/google/certificate-transparency-go v1.3.3
 )
