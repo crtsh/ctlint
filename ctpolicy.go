@@ -162,7 +162,7 @@ func checkSCTListComplianceWithServerAuthenticationCTPolicy(cert *x509.Certifica
 	// Chrome CT Policy: "2. There are Embedded SCTs from at least N distinct CT logs that were Qualified, Usable, ReadOnly, or Retired at the time of check...
 	//                   "...Number of SCTs from distinct CT logs: '<= 180 days' => 2; '> 180 days' => 3...; and"
 	// Apple CT Policy: "The Number of embedded SCTs required is based on certificate lifetime...
-	//                  "...# of SCTs from distinct logs: '180 days or less' => 2; '181 to 398 days' => 3"
+	//                  "...# of SCTs from Distinct Logs: '180 days or less' => 2; '181 to 398 days' => 3"
 	// Mozilla CT Policy: 'For embedded SCTs, "sufficient" means at least N SCTs from distinct logs that were Admissible or Retired at the time of verification, where N is 2 for certificates with a lifetime of 180 days or less, and 3 otherwise.'
 	nApprovedSCTsRequired := 2
 	if cert.NotAfter.Sub(cert.NotBefore) > 180*24*time.Hour {
@@ -180,21 +180,21 @@ func checkSCTListComplianceWithServerAuthenticationCTPolicy(cert *x509.Certifica
 	}
 
 	// Chrome CT Policy: "3. Among the SCTs satisfying requirement 2, at least two SCTs must be issued from distinct CT log operators as recognized by Chrome; and"
-	// Apple CT Policy: "Maximum # of SCTs per log operator which count towards the SCT requirement: '180 days or less' => 1; '181 to 398 days' => 2"
+	// Apple CT Policy: "Maximum # of SCTs per Log Operator Counting Toward SCT Requirement: '180 days or less' => 1; '181 to 398 days' => 2"
 	// Mozilla CT Policy: "Among those SCTs, at least 2 must be from distinct log operators."
 	if !atLeastTwoOperators {
 		findings = append(findings, fmt.Sprintf("W: SCT list contains SCTs from fewer log operators than required by the %s CT Policy", ctPolicyName))
 	}
 
 	// Chrome CT Policy: "4. Before April 15, 2026: Among the SCTs satisfying requirement 2, at least one SCT must be issued from a log recognized by Chrome as being RFC6962-compliant."
-	// Apple CT Policy: "At least one SCT must be issued from a log compliant with RFC 6962."
+	// Apple CT Policy v1.0: "At least one SCT must be issued from a log compliant with RFC 6962." (Removed in v1.1, published 2026-11-05).
 	if nSCTsFromRFC6962Logs < 1 {
 		var enforceOneRFC6962LogPolicy bool
 		switch ctPolicyName {
 		case "Chrome":
 			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 4, 15, 0, 0, 0, 0, time.UTC))
 		case "Apple":
-			enforceOneRFC6962LogPolicy = true
+			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 11, 5, 0, 0, 0, 0, time.UTC)) // Publication date of Apple CT Policy v1.1.
 		case "Mozilla":
 			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 2, 10, 9, 45, 58, 0, time.UTC)) // Push timestamp of https://hg-edge.mozilla.org/mozilla-central/rev/afcac3008cbb plus 70 days.
 		}
