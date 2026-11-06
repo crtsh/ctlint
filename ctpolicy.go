@@ -128,7 +128,12 @@ func checkSCTListComplianceWithServerAuthenticationCTPolicy(cert *x509.Certifica
 	atLeastTwoOperators := false
 	nSCTsFromQualifiedLogs := 0
 	nSCTsFromRFC6962Logs := 0
+	earliestSCTTime := time.Now()
 	for _, sct := range scts {
+		if sctTime := time.UnixMilli(int64(sct.Timestamp)); sctTime.Before(earliestSCTTime) {
+			earliestSCTTime = sctTime
+		}
+
 		if ctLog, logOperatorName, isRFC6962Log := findLogByKeyHash(sct.LogID.KeyID, logList); ctLog != nil && ctLog.State != nil {
 			if (ctLog.State.Usable != nil && !ctLog.State.Usable.Timestamp.After(time.Now())) || ctLog.State.ReadOnly != nil {
 				currentlyApprovedLogs = append(currentlyApprovedLogs, ctLog)
@@ -192,11 +197,11 @@ func checkSCTListComplianceWithServerAuthenticationCTPolicy(cert *x509.Certifica
 		var enforceOneRFC6962LogPolicy bool
 		switch ctPolicyName {
 		case "Chrome":
-			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 4, 15, 0, 0, 0, 0, time.UTC))
+			enforceOneRFC6962LogPolicy = earliestSCTTime.Before(time.Date(2026, 4, 15, 0, 0, 0, 0, time.UTC))
 		case "Apple":
-			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 11, 5, 0, 0, 0, 0, time.UTC)) // Publication date of Apple CT Policy v1.1.
+			enforceOneRFC6962LogPolicy = earliestSCTTime.Before(time.Date(2026, 11, 5, 0, 0, 0, 0, time.UTC)) // Publication date of Apple CT Policy v1.1.
 		case "Mozilla":
-			enforceOneRFC6962LogPolicy = time.Now().Before(time.Date(2026, 2, 10, 9, 45, 58, 0, time.UTC)) // Push timestamp of https://hg-edge.mozilla.org/mozilla-central/rev/afcac3008cbb plus 70 days.
+			enforceOneRFC6962LogPolicy = earliestSCTTime.Before(time.Date(2026, 2, 10, 9, 45, 58, 0, time.UTC)) // Push timestamp of https://hg-edge.mozilla.org/mozilla-central/rev/afcac3008cbb plus 70 days.
 		}
 
 		if enforceOneRFC6962LogPolicy {
